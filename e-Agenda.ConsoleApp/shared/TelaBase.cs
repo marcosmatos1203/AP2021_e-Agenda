@@ -17,7 +17,7 @@ namespace e_Agenda.ConsoleApp.shared
             titulo = tit;
         }
 
-        public string ObterOpcao()
+        public virtual string ObterOpcao()
         {
             Console.WriteLine("Digite 1 para inserir novo registro");
             Console.WriteLine("Digite 2 para visualizar registros");

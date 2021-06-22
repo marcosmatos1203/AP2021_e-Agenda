@@ -191,5 +191,14 @@ namespace e_Agenda.Controladores
             return contatos;
         }
 
+        public override List<Tarefa> SelecionarTarefasFechadas()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override List<Tarefa> SelecionarTarefasAbertas()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

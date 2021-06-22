@@ -15,5 +15,7 @@ namespace e_Agenda.Controladores
         public abstract bool ExcluirItem(int id);
         public abstract List<T> SelecionarTodos();
         public abstract T SelecionarPorId(int id);
+        public abstract List<Tarefa> SelecionarTarefasFechadas();
+        public abstract List<Tarefa> SelecionarTarefasAbertas();
     }
 }

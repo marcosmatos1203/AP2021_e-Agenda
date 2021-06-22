@@ -49,30 +49,35 @@ namespace e_Agenda.ConsoleApp
                     else if (opcao == "4")
                         tela.ExcluirRegistro();
                 }
-                //else if (telaSelecionada is TelaEmprestimo)
-                //{
-                //    TelaEmprestimo telaEmprestimo = (TelaEmprestimo)telaSelecionada;
+                else if (telaSelecionada is TelaTarefa)
+                {
+                    TelaTarefa telaTarefa = (TelaTarefa)telaSelecionada;
 
-                //    if (opcao == "1")
-                //        telaEmprestimo.RegistrarEmprestimo();
+                    if (opcao == "1")
+                        telaTarefa.RegistrarTarefa();
 
-                //    else if (opcao == "2")
-                //        telaEmprestimo.RegistrarDevolucao();
+                    else if (opcao == "2")
+                        telaTarefa.EditarTarefa();
 
-                //    else if (opcao == "3")
-                //    {
-                //        bool temRegistros = telaEmprestimo.VisualizarEmprestimosAbertos();
-                //        if (temRegistros)
-                //            Console.ReadLine();
-                //    }
-                //    else if (opcao == "4")
-                //    {
-                //        bool temRegistros = telaEmprestimo.VisualizarEmprestimosFechados();
-                //        if (temRegistros)
-                //            Console.ReadLine();
-                //    }
+                    else if (opcao == "3")
+                    {
+                        telaTarefa.ExcluirTarefa(); 
+                    }
 
-                //}
+                    else if (opcao == "4")
+                    {
+                        bool temRegistros = telaTarefa.VisualizarTarefasPendentes();
+                        if (temRegistros)
+                            Console.ReadLine();
+                    }
+                    else if (opcao == "5")
+                    {
+                        bool temRegistros = telaTarefa.VisualizarTarefasFechadas();
+                        if (temRegistros)
+                            Console.ReadLine();
+                    }
+
+                }
                 Console.Clear();
             }
         }

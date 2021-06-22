@@ -13,7 +13,6 @@ namespace e_Agenda.Controladores
         
         public ControladorTarefa()
         {
-            
         }
         ConexaoDB conexao = new ConexaoDB();
 
@@ -72,6 +71,30 @@ namespace e_Agenda.Controladores
 		                [DATACRIACAO]
 	                FROM
                         TBTAREFA ORDER BY PRIORIDADE DESC;";
+        private const string sqlListarTarefasFechadas =
+            @"SELECT
+                        [ID],
+		                [PERCENTUALCONCLUIDO], 
+		                [TITULO], 
+		                [DATACONCLUSAO],
+                        [PRIORIDADE], 
+		                [DATACRIACAO]
+	                FROM
+                        TBTAREFA ORDER BY PRIORIDADE DESC
+                    WHERE
+                        PERCENTUALCONCLUIDO=100;";
+        private const string sqlListarTarefasAbertas =
+            @"SELECT
+                        [ID],
+		                [PERCENTUALCONCLUIDO], 
+		                [TITULO], 
+		                [DATACONCLUSAO],
+                        [PRIORIDADE], 
+		                [DATACRIACAO]
+	                FROM
+                        TBTAREFA ORDER BY PRIORIDADE DESC
+                    WHERE
+                        PERCENTUALCONCLUIDO<100;";
         public override string AdicionarNovo(Tarefa tarefa)
         {
             string resultadoValidacao = tarefa.Validar();
@@ -99,6 +122,25 @@ namespace e_Agenda.Controladores
                 conexao.FecharDB();
             }
             return resultadoValidacao;
+        }
+        public override List<Tarefa> SelecionarTarefasFechadas()
+        {
+            conexao.AbrirDB();
+            SqlCommand comandoSelecao = conexao.Comando(sqlListarTarefasFechadas);
+
+            List<Tarefa> tarefas = ListarTarefas(comandoSelecao);
+            conexao.FecharDB();
+            return tarefas;
+        }
+       
+        public override List<Tarefa> SelecionarTarefasAbertas()
+        {
+            conexao.AbrirDB();
+            SqlCommand comandoSelecao = conexao.Comando(sqlListarTarefasAbertas);
+
+            List<Tarefa> tarefas = ListarTarefas(comandoSelecao);
+            conexao.FecharDB();
+            return tarefas;
         }
 
         public override bool ExisteItem(int idPesquisado)
@@ -193,7 +235,6 @@ namespace e_Agenda.Controladores
             comando.Parameters.AddWithValue("DATACONCLUSAO", tarefa.DataConclusao);
             comando.Parameters.AddWithValue("PRIORIDADE", tarefa.Prioridade);
         }
-        
-       
+
     }
 }
