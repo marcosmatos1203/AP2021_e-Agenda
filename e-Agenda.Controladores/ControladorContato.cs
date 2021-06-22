@@ -67,7 +67,7 @@ namespace e_Agenda.Controladores
                         [CARGO], 
 		                [EMPRESA]
 	                FROM
-                        TBCONTATO";
+                        TBCONTATO ORDER BY CARGO;";
         public override string AdicionarNovo(Contato contato)
         {
             string resultadoValidacao = contato.Validar();

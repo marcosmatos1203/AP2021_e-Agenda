@@ -71,7 +71,7 @@ namespace e_Agenda.Controladores
                         [PRIORIDADE], 
 		                [DATACRIACAO]
 	                FROM
-                        TBTAREFA";
+                        TBTAREFA ORDER BY PRIORIDADE DESC;";
         public override string AdicionarNovo(Tarefa tarefa)
         {
             string resultadoValidacao = tarefa.Validar();
